@@ -1,8 +1,6 @@
-import { join } from 'path';
 import { Module } from '@nestjs/common';
 import { ConfigModule, ConfigService } from '@nestjs/config';
 import { ThrottlerModule } from '@nestjs/throttler';
-import { ServeStaticModule } from '@nestjs/serve-static/dist/serve-static.module';
 import { config, envs, validations } from 'src/config';
 import { DatabaseModule } from 'src/database/database.module';
 import { UsersModule } from 'src/modules/users.module';
@@ -25,9 +23,6 @@ import { UtilsModule } from 'src/modules/utils.module';
       isGlobal: true,
       load: [config],
       validationSchema: validations,
-    }),
-    ServeStaticModule.forRoot({
-      rootPath: join(process.cwd(), 'storage'),
     }),
     DatabaseModule,
     UsersModule,
